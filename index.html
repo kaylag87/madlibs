@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<style>
+   body mark {
+       background-color: yellow;
+   }
+</style>
+<head>
+   <meta charset="UTF-8">
+   <title>Madlibs</title>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+   <!--<script>
+        var password = "tutorial";
+        (function passcodeprotect() {
+           var passcode = prompt("Enter PassCode");
+           while (passcode !== password) {
+              alert("Incorrect PassCode");
+              return passcodeprotect();
+           }
+        }());
+        alert('Welcome!');
+     </script>-->
+</head>
+
+
+<body>
+<br>
+<section class="blog-list px-3 py-5 p-md-5">
+          <div class="container">
+           <p>How to play: Madlibs is a template word game created by Leonard Stern and Roger Price. You will be given prompts
+           for a list of words that will be substituted in blanks in a story. Fill in the blanks to reveal the story!</p>
+               <h1 class="text-center font-weight-bold" style="font-size:36px;">Madlibs </h1>
+          </div>
+</section>
+   <div class="container">
+
+
+     <!-- start form -->
+     <div id="questions">
+       <h1>Please fill out the following!</h1>
+       <hr>
+       <form role="form">
+         <div class="form-group">
+           <label for="pluralnoun">Plural Noun</label>
+           <input id="pluralnoun" class="form-control pluralnoun" type="text" placeholder="Enter a plural noun ...">
+         </div>
+         <div class="form-group">
+           <label for="pluralnoun2">Plural Noun</label>
+           <input id="pluralnoun2" class="form-control pluralnoun2" type="text" placeholder="Enter a plural noun ...">
+         </div>
+         <div class="form-group">
+           <label for="adjective">Adjective</label>
+           <input id="adjective" class="form-control adjective" type="text" placeholder="Enter an adjective ...">
+         </div>
+         <div class="form-group">
+           <label for="typeofliquid">Type of Liquid</label>
+           <input id="typeofliquid" class="form-control typeofliquid" type="text" placeholder="Enter a type of liquid ...">
+         </div>
+         <div class="form-group">
+           <label for="animalplural">Animal plural</label>
+           <input id="animalplural" class="form-control animalplural" type="text" placeholder="Enter a plural animal ...">
+         </div>
+         <div class="form-group">
+           <label for="adjective2">Adjective</label>
+           <input id="adjective2" class="form-control adjective2" type="text" placeholder="Enter an adjective ...">
+         </div>
+           <div class="form-group">
+           <label for="funnynoise">Funny Noise</label>
+           <input id="funnynoise" class="form-control funnynoise" type="text" placeholder="Enter a funny noise ...">
+         </div>
+           <div class="form-group">
+           <label for="anotherfunnynoise">Another Funny Noise</label>
+           <input id="anotherfunnynoise" class="form-control anotherfunnynoise" type="text" placeholder="Enter another funny noise ....">
+         </div>
+         <div>
+         </div>
+       </form>
+       <button id="btn-click" type="submit" class="btn btn-primary btn-lg">Generate!</button>
+       <hr>
+     </div>
+     <!-- end form -->
+
+
+     <!-- start story -->
+     <div id="story">
+       <hr>
+             <h4>
+                Zoos are places where wild <mark><span class="pluralnoun"></span></mark> are kept in pens or cages so that <mark><span class="pluralnoun2"></span></mark> can come and look at them.
+                 There are two zoos in New York, one in the Bronx and one in <mark><span class="adjective"></span></mark> Park.
+                 The Park zoo is built around a large pond filled with clear sparkling <mark><span class="typeofliquid"></span></mark>.
+                 You will see several <mark><span class="animalplural"></span></mark> swimming in the pond and eating fish.
+                 When it is feeding time, all of the animals make <mark><span class="adjective2"></span></mark> noises.
+                 The elephant goes <mark><span class="funnynoise"></span></mark> and the turtledoves go <mark><span class="anotherfunnynoise"></span></mark>.
+
+           </h4>
+
+
+         <div>
+         <button type="submit" class="btn btn-primary btn-lg" id="play-btn">Play Again?</button>
+       </div>
+     </div>
+     <!-- end story -->
+
+
+
+
+   </div>
+   <!-- scripts -->
+   <script src="https://code.jquery.com/jquery-1.10.2.js" integrity="sha256-it5nQKHTz+34HijZJQkpNBIHsjpV8b6QzMJs9tmOBSo=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+<script>
+$(function() {
+
+
+   // hide the story from view
+   $("#story").hide();
+
+
+   // Function to capitalize the first letter of a string
+   function capitalizeFirstLetter(string) {
+       return string.charAt(0).toUpperCase() + string.slice(1);
+   }
+
+
+   // ---- event handler ---- //
+   $("#btn-click").click(function(e) {
+
+
+       e.preventDefault();
+
+
+       // grab the values from the input boxes, capitalize them, then append them to the DOM
+       $(".pluralnoun").empty().append($("input.pluralnoun").val());
+       $(".pluralnoun2").empty().append($("input.pluralnoun2").val());
+       $(".adjective").empty().append($("input.adjective").val());
+       $(".typeofliquid").empty().append($("input.typeofliquid").val());
+       $(".animalplural").empty().append($("input.animalplural").val());
+       $(".adjective2").empty().append($("input.adjective2").val());
+       $(".funnynoise").empty().append($("input.funnynoise").val());
+       $(".anotherfunnynoise").empty().append($("input.anotherfunnynoise").val());
+
+
+       // show the story
+       $("#story").show();
+
+
+       // empty the form's values
+       $(':input').val('');
+
+
+       // hide the questions
+       $("#questions").hide();
+
+
+   });
+
+
+   // ---- event handler ---- //
+   $("#play-btn").click(function(e) {
+       $("#questions").show();
+       $("#story").hide();
+   });
+
+
+});
+</script>
+
+
+
+
+</body>
+</html>
+
